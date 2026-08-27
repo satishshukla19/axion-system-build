@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telemetry-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: telemetry
+        image: acrmicroservicesprod001.azurecr.io/axion-telemetry-backend:v1
+        ports:
+        - containerPort: 8000

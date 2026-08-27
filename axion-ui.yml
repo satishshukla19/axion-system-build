@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: axionui-deployment
+  labels:
+    app: nginx4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx4
+  template:
+    metadata:
+      labels:
+        app: nginx4
+    spec:
+      containers:
+      - name: axionui
+        image: acrmicroservicesprod001.azurecr.io/axion-ui:v3
+        ports:
+        - containerPort: 80
