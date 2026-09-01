@@ -1,0 +1,34 @@
+trigger:
+- main
+
+pool: Default
+  
+stages:
+  - stage: Build
+    displayName: 'Build and Push Docker Image'  
+    jobs:
+      - job: Build
+        displayName: 'Build Application'
+        steps:
+        - task: AzureCLI@3
+          inputs:
+            connectionType: 'azureRM'
+            azureSubscription: 'aug-service'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              docker build -t acrmicroservicesprod001.azurecr.io/axion-ui:v1 axion-ui
+              az acr login -n acrmicroservicesprod001
+              docker push acrmicroservicesprod001.azurecr.io/xion-ui:v1
+          -
+# - task: AzureCLI@3
+#   inputs:
+#     connectionType: 'azureRM'
+#     azureSubscription: 'aug-service'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: |
+#       docker build -t acrmicroservicesprod001.azurecr.io/axion-ui:v1 axion-ui
+#       az acr login -n acrmicroservicesprod001
+#       docker push acrmicroservicesprod001.azurecr.io/xion-ui:v1
+          
