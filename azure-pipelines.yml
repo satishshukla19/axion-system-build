@@ -20,7 +20,7 @@ stages:
               docker build -t acrmicroservicesprod001.azurecr.io/axion-ui:v1 axion-ui
               az acr login -n acrmicroservicesprod001
               docker push acrmicroservicesprod001.azurecr.io/xion-ui:v1
-          -
+
 # - task: AzureCLI@3
 #   inputs:
 #     connectionType: 'azureRM'
