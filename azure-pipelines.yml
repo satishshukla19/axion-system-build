@@ -10,6 +10,7 @@ stages:
       - job: Build
         displayName: 'Build Application'
         steps:
+        - checkout: self
         - task: AzureCLI@3
           inputs:
             connectionType: 'azureRM'
